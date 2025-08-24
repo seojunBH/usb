@@ -1,82 +1,96 @@
 import 'package:flutter/material.dart';
-import 'package:timer_builder/timer_builder.dart';
-import 'package:intl/intl.dart';
 
 
-class user extends StatefulWidget {
-  const user({super.key});
+class protector extends StatefulWidget {
+  const protector({super.key});
 
   @override
-  State<user> createState() => _userState();
+  State<protector> createState() => _protectorState();
 }
 
-class _userState extends State<user> {
+class _protectorState extends State<protector> {
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffEDEDED),
-              appBar: PreferredSize(
-                preferredSize: Size.fromHeight(80.0),
-                child: AppBar(
-                centerTitle: true,
-                backgroundColor: Colors.transparent,
-                leading: IconButton(
-                  icon: Icon(Icons.menu,size: 50,color: Color(0xff444444),),
-                  onPressed: (){},
-                ),
-                actions: [IconButton(
-                  icon: Icon(Icons.notifications,size: 50,color: Color(0xff444444),),
-                  onPressed: (){},
-                )],
-                          ),
-              ),
-        body: ListView(
+      backgroundColor: Color(0xffEDEDED),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(80.0),
+        child: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            icon: Icon(Icons.menu,size: 50,color: Color(0xff444444),),
+            onPressed: (){},
+          ),
+          actions: [IconButton(
+            icon: Icon(Icons.notifications,size: 50,color: Color(0xff444444),),
+            onPressed: (){},
+          )],
+        ),
+      ),
+      body: ListView(
+          children: [
+            Text("오늘의 일정", style: TextStyle(color: Colors.black, fontSize: 38, fontWeight: FontWeight.bold)),
+            TaskBlock(title: "일정 이름", time: "오전 00시 00분", isDone: true)
+          ]
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Color(0xffFAFAF8),
+        height: 80,
+        child: Row(
+          children: [
+            Expanded(child: SizedBox(height: 80,)),
+            Column(
               children: [
-                TimerBuilder.periodic(
-                  const Duration(seconds: 1),
-                  builder: (context) {
-                    return Text(
-                      DateFormat('MM월 dd일 EEEE','ko').format(DateTime.now()), style: TextStyle(color: Color(0xff444444), fontSize: 38,fontWeight: FontWeight.bold),
-                      );
-                    },
-                ),
-                TimerBuilder.periodic(
-                  const Duration(seconds: 1),
-                  builder: (context) {
-                    return Text(
-                      DateFormat('a hh시 mm분','ko').format(DateTime.now()), style: TextStyle(color: Color(0xff444444), fontSize: 38, fontWeight: FontWeight.bold),
-                    );
-                  },
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 20,
-                ),
-                Text("오늘의 일정", style: TextStyle(color: Colors.black, fontSize: 38, fontWeight: FontWeight.bold)),
-                TaskBlock(title: "일정 이름", time: "오전 00시 00분", isDone: true)
-              ]
+                IconButton(onPressed: (){}, icon: Icon(Icons.home,size: 35,color: Colors.black,),padding: EdgeInsets.zero,),
+                Text("홈",style: TextStyle(height: 0.5),)
+              ],
             ),
-      );
+            Expanded(child: SizedBox(height: 80,)),
+            Column(
+              children: [
+                IconButton(onPressed: (){}, icon: Icon(Icons.alarm_add,size: 35,color: Color(0xff999999),),padding: EdgeInsets.zero,),
+                Text("일정추가",style: TextStyle(height: 0.5),)
+              ],
+            ),
+            Expanded(child: SizedBox(height: 80,)),
+            Column(
+              children: [
+                IconButton(onPressed: (){}, icon: Icon(Icons.nfc,size: 35,color: Color(0xff999999),),padding: EdgeInsets.zero,),
+                Text("NFC추가",style: TextStyle(height: 0.5),)
+              ],
+            ),
+            Expanded(child: SizedBox(height: 80,)),
+          ],
+        ),
+      ),
+    );
   }
 }
 
 class TaskBlock extends StatelessWidget {
   final String title;
   final String time;
-  final bool isDone;// 클릭 시 실행할 함수
+  final bool isDone;
+  final VoidCallback? onTap; // 클릭 시 실행할 함수
 
   const TaskBlock({
     super.key,
     required this.title,
     required this.time,
     required this.isDone,
+    this.onTap, // optional
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: (){
+        Navigator.pushNamed(context, '/alarm');
+      }, // 전체 클릭 가능
+      child: Container(
         margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
         height: 130,
         decoration: BoxDecoration(
@@ -148,6 +162,7 @@ class TaskBlock extends StatelessWidget {
             ),
           ],
         ),
+      ),
     );
   }
 }

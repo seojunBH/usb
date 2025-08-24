@@ -5,6 +5,7 @@ import 'package:usb/member/choice.dart';
 import 'package:usb/member/loading.dart';
 import 'package:usb/user/user.dart';
 import 'package:usb/user/alarm.dart';
+import 'package:usb/protector/protector.dart';
 
 import 'member/login.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/propass': (context) => propass(),
         '/user': (context) => user(),
         '/alarm': (context) => const Alarm(),
+        '/protector': (context) => protector(),
       },
     );
   }

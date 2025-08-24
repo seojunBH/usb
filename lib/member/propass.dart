@@ -93,7 +93,7 @@ class _propassState extends State<propass> {
                         icon: Icon(Icons.arrow_forward,color: Colors.white,size: 30),
                         onPressed: (){
                           if (controller.text == pass2) {
-                            Navigator.pushNamed(context, '/user');
+                            Navigator.pushNamed(context, '/protector');
                           } else {
                             showSnackBar(context, Text('잘못된 비밀번호입니다.'));
                           }
