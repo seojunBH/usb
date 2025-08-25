@@ -51,7 +51,9 @@ class _protectorState extends State<protector> {
             Expanded(child: SizedBox(height: 80,)),
             Column(
               children: [
-                IconButton(onPressed: (){}, icon: Icon(Icons.alarm_add,size: 35,color: Color(0xff999999),),padding: EdgeInsets.zero,),
+                IconButton(onPressed: (){
+                  Navigator.pushNamed(context, '/schedule');
+                }, icon: Icon(Icons.alarm_add,size: 35,color: Color(0xff999999),),padding: EdgeInsets.zero,),
                 Text("일정추가",style: TextStyle(height: 0.5),)
               ],
             ),
