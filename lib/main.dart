@@ -7,6 +7,7 @@ import 'package:usb/user/user.dart';
 import 'package:usb/user/alarm.dart';
 import 'package:usb/protector/protector.dart';
 import 'package:usb/protector/schedule.dart';
+import 'package:usb/protector/addnfc.dart';
 
 import 'member/login.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -36,6 +37,8 @@ class MyApp extends StatelessWidget {
         '/alarm': (context) => const Alarm(),
         '/protector': (context) => protector(),
         '/schedule': (context) => schedule(),
+        '/addnfc': (context) => addnfc(),
+
       },
     );
   }

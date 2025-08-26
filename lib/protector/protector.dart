@@ -60,7 +60,9 @@ class _protectorState extends State<protector> {
             Expanded(child: SizedBox(height: 80,)),
             Column(
               children: [
-                IconButton(onPressed: (){}, icon: Icon(Icons.nfc,size: 35,color: Color(0xff999999),),padding: EdgeInsets.zero,),
+                IconButton(onPressed: (){
+                  Navigator.pushNamed(context, '/addnfc');
+                  }, icon: Icon(Icons.nfc,size: 35,color: Color(0xff999999),),padding: EdgeInsets.zero,),
                 Text("NFC추가",style: TextStyle(height: 0.5),)
               ],
             ),

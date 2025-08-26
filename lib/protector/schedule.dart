@@ -255,10 +255,11 @@ class _scheduleState extends State<schedule> {
                 ),
                 child: Center(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Expanded(child: Icon(Icons.volume_down,size: 40,)),
-                      Container(
-                        width: 500,
+                      const Flexible(flex: 1,child: Icon(Icons.volume_down,size: 40,),),
+                      Flexible(
+                        flex: 6,
                         child: Slider(
                           value: _currentValue,
                           min: 0,
@@ -270,10 +271,31 @@ class _scheduleState extends State<schedule> {
                           },
                         ),
                       ),
-                      const Expanded(child: Icon(Icons.volume_up,size: 40,)),
+                      const Flexible(flex: 1,child: Icon(Icons.volume_up,size: 40,),),
                     ],
                   ),
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(flex: 1,child: Container(color: Colors.transparent,),),
+                    Flexible(
+                      flex: 2,
+                      child: SizedBox(
+                        child: ElevatedButton(
+                          onPressed: () => Navigator.pushNamed(context, "/protector"),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xff67CC6D),
+                            foregroundColor: Colors.black,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                          ),
+                          child: const Text("완료", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                    ),
+                    Expanded(flex: 1,child: Container(color: Colors.transparent,),),
+                ]
               ),
             ],
           ),
@@ -314,7 +336,8 @@ class _scheduleState extends State<schedule> {
             Column(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/addnfc');},
                   icon: const Icon(Icons.nfc,
                       size: 35, color: Color(0xff999999)),
                   padding: EdgeInsets.zero,
